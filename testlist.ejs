@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Тесты</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+</head>
+<body>
+    <% tickets.forEach(function(ticket, i){ %>
+        <h2 class="variant">Вариант <%= i %></h2>
+        <% ticket.forEach(function(task, i){%>
+            <h3>Задание № <%= i %></h3>        
+            <%- task.input %>
+        <% }) %>
+        <% if ( (i+1)%4 === 0) { %> <div class="page-separator"></div> <% } %>
+    <% })%>
+            
+    <div class="answers-block">
+        <% tickets.forEach(function(ticket, t){%>
+            <h2 class="variant">Вариант <%= t %></h2> 
+            <% ticket.forEach(function(task, i){%>
+                <%- task.answer%>
+            <% })%>
+        <% })%>
+    </div>
+</body>
+</html>

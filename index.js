@@ -1,9 +1,10 @@
 const ejs = require('ejs');
 const fs = require('fs');
 
-var tasks_templates = require('./tasks');
+var tasks_blocks_templates = require('./tasks');
 
 var tickets_number = 30; // сколько вариантов делать
+
 var tickets = []; //будущий список вариантов
 
 //создаем контент
@@ -11,7 +12,9 @@ for(var t=0; t<tickets_number; t++){
     var tasks = []; // список заданий с заполненным шаблонами вопросов и ответов
 
     //заполняем вопросы-ответы случайными числами и собираем в список
-    tasks_templates.forEach(function(task_bone, i){
+    tasks_blocks_templates.forEach(function(task_block, i){
+        var task_bone = task_block.tasks[Math.floor(Math.random()*task_block.tasks.length)] //берем случайную задачу из блока
+
         var data = task_bone.data_generator(i); //получаем числа для задания и ответа
 
         tasks.push({ 
@@ -25,7 +28,7 @@ for(var t=0; t<tickets_number; t++){
 
 //собираем все в красивую страницу
 ejs.renderFile('testlist.ejs', {tickets: tickets}, function(err, page){
-    fs.writeFile('test.html',page, (err) => {
+    fs.writeFile('./tests_collection/test.html',page, (err) => {
         if (err) throw err;
         console.log('The file have been saved')
     })

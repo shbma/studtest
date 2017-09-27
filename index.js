@@ -4,7 +4,7 @@ const fs = require('fs');
 var tasks_blocks_templates = require('./tasks');
 
 var tickets_number = 30; // сколько вариантов делать
-var topic_id = 2; //какую тему обслуживаем
+var topic_id = 3; //какую тему обслуживаем
 
 var tickets = []; //будущий список вариантов
 

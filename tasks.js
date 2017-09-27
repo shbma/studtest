@@ -2,6 +2,47 @@
 //Блок должен состоять из близких, но все-же несколько варьирующихся по формулировкам задач.
 module.exports = [
     { //начало блока
+        topic_id: 3,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Найти проекцию вектора <i>a</i> = {<%= input.vector1.x %>,<%= input.vector1.y %>,<%= input.vector1.y %>} на вектор <i>b</i>{<%= input.vector2.x %>,<%= input.vector2.y %>,<%= input.vector2.y %>}, угол между этими векторами, их векторное произведение.
+                    </p>
+                `,
+                answer: `
+                    <p>
+                        проекция = <%= answer.projection %>, угол = <%= answer.angle %>, вект.пр = <%= answer.multi %>
+                    </p>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        vector1: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                            z: Math.round(Math.random()*10+1)
+                        },
+                        vector2: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                            z: Math.round(Math.random()*10+1)
+                        }
+                    };
+                    var answer = {
+                        projection: '?',
+                        angle: '?',
+                        multi: '?'
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
         topic_id: 2,
         tasks: [ //массив заданий блока
             {

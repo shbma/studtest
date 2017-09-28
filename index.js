@@ -1,10 +1,11 @@
 const ejs = require('ejs');
 const fs = require('fs');
 
+const config = require('./config')
 var tasks_blocks_templates = require('./tasks');
 
-var tickets_number = 30; // сколько вариантов делать
-var topic_id = 3; //какую тему обслуживаем
+var tickets_number = config.tickets_number; // сколько вариантов делать
+var topic_id = config.topic_id; //какую тему обслуживаем
 
 var tickets = []; //будущий список вариантов
 
@@ -31,10 +32,15 @@ for(var t=0; t<tickets_number; t++){
 }
 
 //собираем все в красивую страницу
-ejs.renderFile('testlist.ejs', {tickets: tickets}, function(err, page){
-    fs.writeFile('./tests_collection/test.html',page, (err) => {
-        if (err) throw err;
-        console.log('The file have been saved')
-    })
-})
+ejs.renderFile('testlist.ejs', {
+    tickets: tickets,
+    tasks_per_page: config.tasks_per_page
+    },
+    function(err, page){
+        fs.writeFile('./tests_collection/test.html',page, (err) => {
+            if (err) throw err;
+            console.log('The file have been saved')
+        })
+    }
+)
 //console.log(page)

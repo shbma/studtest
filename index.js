@@ -1,7 +1,7 @@
 const ejs = require('ejs');
 const fs = require('fs');
 
-const config = require('./config')
+const config = require('./config-input')
 var tasks_blocks_templates = require('./tasks');
 
 var tickets_number = config.tickets_number; // сколько вариантов делать

@@ -2,6 +2,128 @@
 //Блок должен состоять из близких, но все-же несколько варьирующихся по формулировкам задач.
 module.exports = [
     { //начало блока
+        topic_id: 4,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Записать общее уравнение плоскости проходящей через точку P(<%= input.dot.x %>,<%= input.dot.y %>,<%= input.dot.y %>) перпендикулярно вектору <i>n</i>{<%= input.vector.A %>, <%= input.vector.B %>, <%= input.vector.C %>}
+                    </p>
+                `,
+                answer: `
+                    <p>
+                        <%= answer.plane.A %>x + <%= answer.plane.B %>y + <%= answer.plane.C %>z + <%= answer.plane.D %> = 0
+                    </p>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        dot: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                            z: Math.round(Math.random()*10+1)
+                        },
+                        vector: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                            C: Math.round(Math.random()*10+1)
+                        }
+                    };
+                    var answer = {
+                        plane: {
+                            A: input.vector.A.toFixed(2),
+                            B: input.vector.B.toFixed(2),
+                            C: input.vector.C.toFixed(2),
+                            D: (-input.vector.A*input.dot.x -input.vector.B*input.dot.y -input.vector.C*input.dot.z).toFixed(2)
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 4,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Какие отрезки отсекает на осях координат плоскость <%= input.plane.A %>x + <%= input.plane.B %>y + <%= input.plane.C %>z + <%= input.plane.D %> = 0 ?
+                    </p>
+                `,
+                answer: `
+                    <p> a = <%= answer.a %>, b = <%= answer.b %>, c = <%= answer.c %>                   </p>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        plane: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                            C: Math.round(Math.random()*10+1),
+                            D: Math.round(Math.random()*10+1)
+                        }
+                    };
+                    var answer = {
+                        a: (-input.plane.D/input.plane.A).toFixed(2),
+                        b: (-input.plane.D/input.plane.B).toFixed(2),
+                        c: (-input.plane.D/input.plane.C).toFixed(2)
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 4,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Найти косинус угла между плоскостями
+                        <%= input.plane1.A %>x + <%= input.plane1.B %>y + <%= input.plane1.C %>z + <%= input.plane1.D %> = 0 и
+                        <%= input.plane2.A %>x + <%= input.plane2.B %>y + <%= input.plane2.C %>z + <%= input.plane2.D %> = 0
+                    </p>
+                `,
+                answer: `
+                    <p>
+                        <%= answer.cos %>
+                    </p>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        plane1: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                            C: Math.round(Math.random()*10+1),
+                            D: Math.round(Math.random()*10+1)
+                        },
+                        plane2: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                            C: Math.round(Math.random()*10+1),
+                            D: Math.round(Math.random()*10+1)
+                        }
+                    };
+                    var answer = {
+                        cos: ((input.plane1.A*input.plane2.A + input.plane1.B*input.plane2.B + input.plane1.C*input.plane2.C)/(Math.sqrt(Math.pow(input.plane1.A,2)+Math.pow(input.plane1.B,2)+Math.pow(input.plane1.C,2))*Math.sqrt(Math.pow(input.plane2.A,2)+Math.pow(input.plane2.B,2)+Math.pow(input.plane2.C,2)))).toFixed(2)
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
         topic_id: 3,
         tasks: [ //массив заданий блока
             {

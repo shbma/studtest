@@ -19,7 +19,7 @@
             <div class="answer-block">
                 <h3 class="variant">Вариант <%= t %></h2>
                 <% ticket.forEach(function(task, i){%>
-                    <%- task.answer%>
+                    <p><b><%= i %></b>) <%- task.answer%></p>
                 <% })%>
             </div>
         <% })%>

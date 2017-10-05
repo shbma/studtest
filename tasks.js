@@ -2,6 +2,136 @@
 //Блок должен состоять из близких, но все-же несколько варьирующихся по формулировкам задач.
 module.exports = [
     { //начало блока
+        topic_id: 5,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Найти произведение матриц A*B, где
+                        <br>A=<br>
+                        <%= input.A.a11 %> <%= input.A.a12 %> <br>
+                        <%= input.A.a21 %> <%= input.A.a22 %> <br>
+                        <br>B=<br>
+                        <%= input.B.b11 %> <%= input.B.b12 %> <br>
+                        <%= input.B.b21 %> <%= input.B.b22 %> <br>
+                    </p>
+                `,
+                answer: `
+                        <%= answer.C.c11 %> <%= answer.C.c12 %> <br>
+                        <%= answer.C.c21 %> <%= answer.C.c22 %> <br>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        A: {
+                            a11: Math.ceil(Math.random()*10+1),
+                            a12: Math.ceil(Math.random()*10+1),
+                            a21: Math.ceil(Math.random()*10+1),
+                            a22: Math.ceil(Math.random()*10+1),
+                        },
+                        B: {
+                            b11: Math.ceil(Math.random()*10+1),
+                            b12: Math.ceil(Math.random()*10+1),
+                            b21: Math.ceil(Math.random()*10+1),
+                            b22: Math.ceil(Math.random()*10+1),
+                        }
+                    };
+                    var answer = {
+                        C: {
+                            c11: input.A.a11*input.B.b11 +input.A.a12*input.B.b21.toFixed(0),
+                            c12: input.A.a11*input.B.b21 +input.A.a12*input.B.b22.toFixed(0),
+                            c21: input.A.a21*input.B.b11 +input.A.a22*input.B.b21.toFixed(0),
+                            c22: input.A.a21*input.B.b21 +input.A.a22*input.B.b22.toFixed(0)
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 5,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Найти |С|, где
+                        <br>С=<br>
+                        <%= input.A.a11 %> <%= input.A.a12 %> <br>
+                        <%= input.A.a21 %> <%= input.A.a22 %> <br>
+                    </p>
+                `,
+                answer: `
+                        <%= answer.det %>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        A: {
+                            a11: Math.ceil(Math.random()*10+1),
+                            a12: Math.ceil(Math.random()*10+1),
+                            a21: Math.ceil(Math.random()*10+1),
+                            a22: Math.ceil(Math.random()*10+1),
+                        },
+                    };
+                    var answer = {
+                        det: input.A.a11*input.A.a22 - input.A.a12*input.A.a21
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 5,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Найти |D|, где
+                        <br>D=<br>
+                        <%= input.A.a11 %> <%= input.A.a12 %> <%= input.A.a13 %> <br>
+                        <%= input.A.a21 %> <%= input.A.a22 %> <%= input.A.a23 %> <br>          <%= input.A.a31 %> <%= input.A.a32 %> <%= input.A.a33 %> <br>
+                    </p>
+                `,
+                answer: `
+                    <%= answer.det %>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        A: {
+                            a11: Math.ceil(Math.random()*10+1),
+                            a12: Math.ceil(Math.random()*10+1),
+                            a13: Math.ceil(Math.random()*10+1),
+                            a21: Math.ceil(Math.random()*10+1),
+                            a22: Math.ceil(Math.random()*10+1),
+                            a23: Math.ceil(Math.random()*10+1),
+                            a31: Math.ceil(Math.random()*10+1),
+                            a32: Math.ceil(Math.random()*10+1),
+                            a33: Math.ceil(Math.random()*10+1),
+                        },
+                    };
+                    var answer = {
+                        det: input.A.a11*(input.A.a22*input.A.a33 - input.A.a32*input.A.a23)
+                            -input.A.a12*(input.A.a21*input.A.a33 - input.A.a31*input.A.a23)
+                            +input.A.a13*(input.A.a21*input.A.a32 - input.A.a31*input.A.a22)
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
         topic_id: 4,
         tasks: [ //массив заданий блока
             {

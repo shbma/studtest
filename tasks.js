@@ -2,6 +2,254 @@
 //Блок должен состоять из близких, но все-же несколько варьирующихся по формулировкам задач.
 module.exports = [
     { //начало блока
+        topic_id: 6,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Записать общее уравнение прямой проходящей через точку P(<%= input.dot.x %>,<%= input.dot.y %>) перпендикулярно вектору <i>n</i>{<%= input.vector.A %>, <%= input.vector.B %>}. Сделать схематичный чертеж.
+                    </p>
+                `,
+                answer: `
+                    <p>
+                        <%= answer.plane.A %>x + <%= answer.plane.B %>y + <%= answer.plane.C %> = 0
+                    </p>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        dot: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        vector: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                        }
+                    };
+                    var answer = {
+                        plane: {
+                            A: input.vector.A.toFixed(2),
+                            B: input.vector.B.toFixed(2),
+                            С: (-input.vector.A*input.dot.x -input.vector.B*input.dot.y).toFixed(2)
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 6,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Записать каноническое уравнение прямой проходящей через точку P(<%= input.dot.x %>,<%= input.dot.y %>) параллельно вектору <i>a</i>{<%= input.vector.A %>, <%= input.vector.B %>}. Сделать схематичный чертеж.
+                    </p>
+                `,
+                answer: `
+                        (x-<%= input.dot.x %>)/<%= input.vector.A %> = (y-<%= input.dot.y %>)/<%= input.vector.B %>
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        dot: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        vector: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                        }
+                    };
+                    var answer = {}
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 6,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Найти точку B симметричную точке A(<%= input.dot.x %>, <%= input.dot.y %>) относительно прямой заданной уравнением <%= input.line.A %>x + <%= input.line.B %>y + <%= input.line.C %> = 0. Сделать схематичный чертеж.
+                    </p>
+                `,
+                answer: `
+                     A (<%= answer.dot.x %>, <%= answer.dot.y %>)
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        dot: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        line: {
+                            A: Math.round(Math.random()*10+1),
+                            B: Math.round(Math.random()*10+1),
+                            C: Math.round(Math.random()*10+1),
+                        }
+                    };
+                    var answer = {
+                        dot: {
+                            x: '?',
+                            y: '?'
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 6,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Даны координаты вершин треугольника ABC: A(<%= input.A.x %>, <%= input.A.y %>), B(<%= input.B.x %>, <%= input.B.y %>) и C(<%= input.C.x %>, <%= input.C.y %>). <br>
+                    а) Найти общее уравнение медианы, проведенной из точки А. Сделать черетеж. <br>
+                    б) Найти длину стороны BC.
+                    </p>
+                `,
+                answer: `
+                     <%= answer.line.A %>x + <%= answer.line.B %>y + <%= answer.line.C %> = 0
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        A: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        B: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        C: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                    };
+                    var answer = {
+                        line: {
+                            A: '?',
+                            B: '?',
+                            C: '?'
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 6,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Даны координаты вершин треугольника ABC: A(<%= input.A.x %>, <%= input.A.y %>), B(<%= input.B.x %>, <%= input.B.y %>) и C(<%= input.C.x %>, <%= input.C.y %>). <br>
+                    a) Найти общее уравнение высоты, опущенной из точки А. Сделать черетеж.<br>
+                    б) Найти расстояние от точки А до противолежащей стороны.
+                    </p>
+                `,
+                answer: `
+                     <%= answer.line.A %>x + <%= answer.line.B %>y + <%= answer.line.C %> = 0
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        A: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        B: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        C: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                    };
+                    var answer = {
+                        line: {
+                            A: '?',
+                            B: '?',
+                            C: '?'
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
+        topic_id: 6,
+        tasks: [ //массив заданий блока
+            {
+                input: `
+                    <p>Даны координаты вершин треугольника ABC: A(<%= input.A.x %>, <%= input.A.y %>), B(<%= input.B.x %>, <%= input.B.y %>) и C(<%= input.C.x %>, <%= input.C.y %>). <br>
+                    a) Найти общее уравнение биссектрисы треугольника, проведенной из точки А. Сделать черетеж. <br>
+                    б) Найти величину угла BAC.
+                    </p>
+                `,
+                answer: `
+                     <%= answer.line.A %>x + <%= answer.line.B %>y + <%= answer.line.C %> = 0
+                `,
+                data_generator: function(number){ //создает случайный набор входных данных, высчитывает ответ
+                    var input = {
+                        number: number,
+                        A: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        B: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                        C: {
+                            x: Math.round(Math.random()*10+1),
+                            y: Math.round(Math.random()*10+1),
+                        },
+                    };
+                    var answer = {
+                        line: {
+                            A: '?',
+                            B: '?',
+                            C: '?'
+                        }
+                    }
+
+                    return {
+                        input: input,
+                        answer: answer
+                    }
+                }
+            }
+        ]
+    },//конец блока
+    { //начало блока
         topic_id: 5,
         tasks: [ //массив заданий блока
             {
